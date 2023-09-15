@@ -23,7 +23,7 @@ public class VolunteerTranslator {
                 .id(source.getId())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
-                .jobs(source.getJobs().stream()
+                .jobs(source.getJobEntities().stream()
                         .map(job -> jobToBom(job))
                         .collect(Collectors.toList()))
                 .build();

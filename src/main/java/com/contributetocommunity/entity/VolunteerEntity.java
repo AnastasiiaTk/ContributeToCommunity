@@ -1,12 +1,23 @@
 package com.contributetocommunity.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Entity
 @Table(name = "volunteers")
-public class VolunteerEntity extends BaseEntity {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class VolunteerEntity {
+
+    @Id
+    @GeneratedValue
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -20,27 +31,4 @@ public class VolunteerEntity extends BaseEntity {
             inverseJoinColumns={@JoinColumn(name="job_id", referencedColumnName = "id")})
     private List<JobEntity> jobEntities;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public List<JobEntity> getJobs() {
-        return jobEntities;
-    }
-
-    public void setJobs(List<JobEntity> jobEntities) {
-        this.jobEntities = jobEntities;
-    }
 }

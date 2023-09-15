@@ -13,7 +13,4 @@ public class Job {
 
     private String description;
 
-    public Integer getId() {
-        return id;
-    }
 }

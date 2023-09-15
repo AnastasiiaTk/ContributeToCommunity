@@ -1,31 +1,29 @@
 package com.contributetocommunity.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "jobs")
-public class JobEntity extends BaseEntity {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class JobEntity {
+
+    @Id
+    @GeneratedValue
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @Column(name = "job_name", nullable = false)
     private String name;
+
     @Column(name = "job_desc", columnDefinition = "TEXT")
     private String description;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

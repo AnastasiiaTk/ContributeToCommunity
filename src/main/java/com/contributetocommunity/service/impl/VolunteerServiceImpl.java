@@ -7,6 +7,8 @@ import com.contributetocommunity.translator.VolunteerTranslator;
 import com.contributetocommunity.bom.Volunteer;
 import com.contributetocommunity.entity.VolunteerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,11 @@ public class VolunteerServiceImpl implements VolunteerService {
                 .map(entity -> volunteerTranslator.volunteerToBom(entity))
                 .collect(Collectors.toList());
         return new PageImpl<>(volunteers);
+    }
+
+    @Override
+    @EventListener(ApplicationReadyEvent.class)
+    public void loadInitialData() {
+
     }
 }
