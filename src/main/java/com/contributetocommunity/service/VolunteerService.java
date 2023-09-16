@@ -11,6 +11,4 @@ public interface VolunteerService {
 
     Page<Volunteer> findVolunteers(int page, int size);
 
-    void loadInitialData();
-
 }

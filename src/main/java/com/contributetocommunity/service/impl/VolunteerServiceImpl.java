@@ -43,9 +43,4 @@ public class VolunteerServiceImpl implements VolunteerService {
         return new PageImpl<>(volunteers);
     }
 
-    @Override
-    @EventListener(ApplicationReadyEvent.class)
-    public void loadInitialData() {
-
-    }
 }
