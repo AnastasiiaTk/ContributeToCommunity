@@ -53,7 +53,7 @@ public class ContributeToCommunityControllerTest {
     }
 
     @Test
-    void shouldReturnPajeVolunteersByJobId() throws Exception {
+    void shouldReturnPageVolunteersByJobId() throws Exception {
         List<Volunteer> volunteer = VolunteerTestDataBuilder.buildVolunteers();
         when(volunteerService.findVolunteers(anyInt(), anyInt())).thenReturn(new PageImpl<>(volunteer));
         this.mockMvc.perform(get("/api/volunteersPage")
@@ -65,7 +65,7 @@ public class ContributeToCommunityControllerTest {
     }
 
     @Test
-    void shouldReturnEmptyPajeByNotExistingJobId() throws Exception {
+    void shouldReturnEmptyPageByNotExistingJobId() throws Exception {
         when(volunteerService.findVolunteers(anyInt(), anyInt())).thenReturn(new PageImpl<>(new ArrayList<>()));
         this.mockMvc.perform(get("/api/volunteersPage")
                         .param("pageIndex", "2")
