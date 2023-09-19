@@ -46,7 +46,7 @@ public class VolunteerServiceTest {
 
     @Test
     public void getVolunteersByJobIdTest() {
-        when(volunteerRepository.findAllByJobId(anyInt())).thenReturn(VolunteerTestDataBuilder.buildVolunteers());
+        when(volunteerRepository.findAllByJobId(anyInt())).thenReturn(VolunteerTestDataBuilder.buildVolunteerEntities());
 
         List<Volunteer> result = volunteerService.getVolunteersByJobId(1);
 
@@ -78,7 +78,7 @@ public class VolunteerServiceTest {
 
     @Test
     public void findVolunteersTest() {
-        Page<VolunteerEntity> pageVolunteerEntities = new PageImpl<>(VolunteerTestDataBuilder.buildVolunteers());
+        Page<VolunteerEntity> pageVolunteerEntities = new PageImpl<>(VolunteerTestDataBuilder.buildVolunteerEntities());
         when(volunteerPagingRepository.findAll((Pageable) any())).thenReturn(pageVolunteerEntities);
 
         Page<Volunteer> result = volunteerService.findVolunteers(1, 2);

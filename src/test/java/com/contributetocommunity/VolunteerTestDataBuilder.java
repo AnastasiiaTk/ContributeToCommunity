@@ -1,14 +1,19 @@
 package com.contributetocommunity;
 
+import com.contributetocommunity.bom.Job;
+import com.contributetocommunity.bom.Volunteer;
 import com.contributetocommunity.entity.JobEntity;
 import com.contributetocommunity.entity.VolunteerEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class VolunteerTestDataBuilder {
 
-    public static List<VolunteerEntity> buildVolunteers() {
+    public static List<VolunteerEntity> buildVolunteerEntities() {
         return Arrays.asList(VolunteerEntity.builder()
                         .id(1)
                         .firstName("firstName1")
@@ -47,5 +52,29 @@ public class VolunteerTestDataBuilder {
                                         .build()
                         )).build());
     }
+
+    public static List<Volunteer> buildVolunteers() {
+        return Arrays.asList(Volunteer.builder()
+                .id(1)
+                .firstName("firstName1")
+                .lastName("lastName1")
+                .jobs(Arrays.asList(
+                        Job.builder()
+                                .id(1)
+                                .name("job1")
+                                .build()
+                )).build());
+    }
+
+
+    public static String getVolunteersAsJson() throws JsonProcessingException {
+        List<Volunteer> volunteers = buildVolunteers();
+        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return objectWriter.writeValueAsString(volunteers)
+                .replace("\n", "")
+                .replace("\r", "")
+                .replaceAll(" ", "");
+    }
+
 
 }
